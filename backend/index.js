@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 const { HoldingModel } = require("./model/HoldingsModel")
 const { PositionModel } = require("./model/PositionsModel")
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4000;
 const URI = process.env.MONGO_URL;
 
 const app = express();
