@@ -1,40 +1,53 @@
-import React, { useState } from 'react'
-import { watchlist } from "../data/data";
+import React, { useState, useEffect } from 'react'
+// import { watchlist } from "../data/data";
 import { KeyboardArrowDown, KeyboardArrowUp, BarChartOutlined, MoreHoriz } from "@mui/icons-material"
 import { Tooltip, Grow } from "@mui/material";
 import { DoughnutChart } from "./DoughnutChart";
+import { useNavigate } from 'react-router-dom';
+// import BuyActionWindow from './BuyActionWindow';
+import axios from 'axios';
 
-const labels = watchlist.map((subArray) => subArray["name"]);
+// const labels = watchlist.map((subArray) => subArray["name"]);
 
 
 const WatchList = () => {
 
+    const [allwatchlist, setWatchList] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:4000/allwatchlist").then((res) => {
+          setWatchList(res.data)
+        })
+    }, []);
+
+    const labels = allwatchlist.map((subArray) => subArray["name"]);
+
     const data = {
-    labels,
-    datasets: [
-      {
-        label: "Price",
-        data: watchlist.map((stock) => stock.price),
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.5)",
-          "rgba(54, 162, 235, 0.5)",
-          "rgba(255, 206, 86, 0.5)",
-          "rgba(75, 192, 192, 0.5)",
-          "rgba(153, 102, 255, 0.5)",
-          "rgba(255, 159, 64, 0.5)",
+        labels,
+        datasets: [
+            {
+                label: "Price",
+                data: allwatchlist.map((stock) => stock.price),
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.5)",
+                    "rgba(54, 162, 235, 0.5)",
+                    "rgba(255, 206, 86, 0.5)",
+                    "rgba(75, 192, 192, 0.5)",
+                    "rgba(153, 102, 255, 0.5)",
+                    "rgba(255, 159, 64, 0.5)",
+                ],
+                borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                ],
+                borderWidth: 1,
+            },
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+    };
 
     return (
         <div className='watchlist-container'>
@@ -49,7 +62,7 @@ const WatchList = () => {
                 <span className="counts"> {12} / 50</span>
             </div>
             <div className="list">
-                {watchlist.map((stock, index) => {
+                {allwatchlist.map((stock, index) => {
                     return <p><WatchListItem stock={stock} key={index} /></p>
                 })}
             </div>
@@ -89,12 +102,20 @@ const WatchListItem = ({ stock }) => {
                     <span className="price">{stock.price}</span>
                 </div>
             </div>
-            {showWatchListActions && <WatchListActions uid={stock.name} />}
+            {showWatchListActions && <WatchListActions uid={stock} />}
         </li>
     )
 }
 
-const WatchListActions = () => {
+
+const WatchListActions = ({ uid }) => {
+    const navigate = useNavigate();
+
+    const OpenBuyWindow = (uid) => {
+        navigate(`/buy/${uid._id}`);
+    };
+
+
     return (
         <span className="actions">
             <span>
@@ -104,7 +125,7 @@ const WatchListActions = () => {
                     arrow
                     TransitionComponent={Grow}
                 >
-                    <button className="buy">Buy</button>
+                    <button className="buy" onClick={() => { OpenBuyWindow(uid) }}>Buy</button>
                 </Tooltip>
                 <Tooltip
                     title="Sell (S)"

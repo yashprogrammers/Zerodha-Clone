@@ -10,24 +10,27 @@ import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute';
 import { useEffect } from 'react';  
 import axios from 'axios';
+import BuyActionWindow from './BuyActionWindow';
+
 
 function Dashboard() {
-
+  
   useEffect(() => {
-  const verifyUser = async () => {
-    const { data } = await axios.post(
-      "http://localhost:4000",
-      {},
-      { withCredentials: true }
-    );
-
-    if (!data.status) {
-      window.location.href = "http://localhost:3001/login";
-    }
-  };
-
-  verifyUser();
-}, []);
+    const verifyUser = async () => {
+      const { data } = await axios.post(
+        "http://localhost:4000",
+        {},
+        { withCredentials: true }
+      );
+      
+      if (!data.status) {
+        window.location.href = "http://localhost:3001/login";
+      }
+    };
+    
+    verifyUser();
+  }, []);
+  
 
   return (
     <div className='dashboard-container'>
@@ -40,7 +43,9 @@ function Dashboard() {
         <Route path='/positions' element={<ProtectedRoute><Positions/></ProtectedRoute>}/>
         <Route path='/funds' element={<ProtectedRoute><Funds/></ProtectedRoute>}/>
         <Route path='/apps' element={<ProtectedRoute><Apps/></ProtectedRoute>}/>
+        <Route path="/buy/:id" element={<BuyActionWindow />} />
       </Routes>
+
         {/* <div className="home_page">
               <h4>
                 {" "}
