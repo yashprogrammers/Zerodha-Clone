@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 // import { watchlist } from "../data/data";
 import { KeyboardArrowDown, KeyboardArrowUp, BarChartOutlined, MoreHoriz } from "@mui/icons-material"
+import SellTwoToneIcon from '@mui/icons-material/SellTwoTone';
+import ShoppingBagTwoToneIcon from '@mui/icons-material/ShoppingBagTwoTone';
 import { Tooltip, Grow } from "@mui/material";
 import { DoughnutChart } from "./DoughnutChart";
 import { useNavigate } from 'react-router-dom';
@@ -125,7 +127,7 @@ const WatchListActions = ({ uid }) => {
                     arrow
                     TransitionComponent={Grow}
                 >
-                    <button className="buy" onClick={() => { OpenBuyWindow(uid) }}>Buy</button>
+                    <button className="buy" onClick={() => { OpenBuyWindow(uid) }}><ShoppingBagTwoToneIcon className="icon" /></button>
                 </Tooltip>
                 <Tooltip
                     title="Sell (S)"
@@ -133,7 +135,7 @@ const WatchListActions = ({ uid }) => {
                     arrow
                     TransitionComponent={Grow}
                 >
-                    <button className="sell">Sell</button>
+                    <button className="sell"><SellTwoToneIcon className="icon" /></button>
                 </Tooltip>
                 <Tooltip
                     title="Analytics (A)"

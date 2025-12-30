@@ -160,6 +160,7 @@ app.get("/allwatchlist", async (req, res) => {
 
 app.listen(PORT, (req, res) => {
   console.log("App Started!")
-  mongoose.connect(URI);
-  console.log("DB Connected!");
+  mongoose.connect(URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("Mongo error:", err));
 })
