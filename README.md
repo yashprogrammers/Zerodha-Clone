@@ -1,0 +1,123 @@
+# 📈 Paper Trading App
+
+🚀 A **full-stack paper trading platform** inspired by Zerodha Kite that allows users to simulate stock trading using virtual money.
+Users can place buy/sell orders, manage holdings, track positions, and view P&L using live or mock stock prices.
+
+---
+
+## ✨ Features
+
+### 🔐 Authentication & Authorization
+
+* Secure user signup & login
+* JWT-based protected routes
+
+### 💰 Wallet System
+
+* Default virtual balance for every user
+* Automatic balance updates on buy/sell
+
+### 🧾 Order Management
+
+* Market buy & sell order simulation
+* Order validation (balance & quantity checks)
+* Order status handling (Executed)
+
+### 📦 Portfolio Management
+
+* Holdings with average buy price calculation
+* Positions with unrealized & realized P&L
+* Auto updates after each trade
+
+### 📊 Data Visualization
+
+* 📊 Bar charts & 🍩 Doughnut charts
+* Portfolio-level insights
+
+### 📉 Stock Prices
+
+* Live stock prices using free APIs
+* Fallback to mock price updates for simulation
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge\&logo=react\&logoColor=61DAFB)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge\&logo=javascript)
+![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge\&logo=chartdotjs\&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-671DDF?style=for-the-badge)
+
+### Backend
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=nodedotjs\&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge\&logo=mongodb\&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge\&logo=jsonwebtokens)
+
+---
+
+## 🧠 Core Logic (High Level)
+
+### 🟢 Buy Order Flow
+
+* Validate user & wallet balance
+* Fetch current stock price
+* Deduct wallet balance
+* Create or update holding (avg price logic)
+* Mark order as executed
+
+### 🔴 Sell Order Flow
+
+* Validate holding quantity
+* Add sell value to wallet
+* Update or remove holding
+* Calculate realized P&L
+
+---
+
+## 🗃 Database Models
+
+* 👤 User
+* 💰 Wallet
+* 🧾 Orders
+* 📦 Holdings
+
+Separated models ensure clean architecture and scalability.
+
+---
+
+## 📸 Screenshots
+
+📌 *Add screenshots here:*
+
+* Landing Page
+* Trading Dashboard
+* Buy / Sell Modal
+* Holdings & Charts
+
+---
+
+## 🔮 Future Enhancements
+
+* 📌 Limit orders
+* ⚡ WebSocket-based real-time prices
+* 📈 Advanced trade analytics
+* 🛡 Admin monitoring dashboard
+
+---
+
+## ⚠️ Disclaimer
+
+This is a **paper trading (simulation) application**.
+❌ No real money
+❌ No real stock trading
+
+---
+
+## 👨‍💻 Author
+
+**Yeshu**
+Aspiring Full-Stack Developer 🚀
